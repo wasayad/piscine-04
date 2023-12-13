@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "995174255365",
+    "project_id": "diarywaouh",
+    "storage_bucket": "diarywaouh.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995174255365:android:b09447cd249d4132d6c56c",
+        "android_client_info": {
+          "package_name": "com.example.module04"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "995174255365-9ve1u7t37ljs46fikdmb6uiipfuec8rd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZBGluvEyJs4dIzYcYDGUlY4OpmRiX4CA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "995174255365-9ve1u7t37ljs46fikdmb6uiipfuec8rd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
