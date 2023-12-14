@@ -9,4 +9,11 @@ class FeelingIcon {
     Icons.sentiment_satisfied,
     Icons.sentiment_satisfied_alt
   ];
+  final List<dynamic> color = [
+    Colors.red,
+    Colors.deepOrange,
+    Colors.yellowAccent,
+    Colors.lightGreen,
+    Colors.green,
+  ];
 }

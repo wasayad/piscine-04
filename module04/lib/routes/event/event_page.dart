@@ -20,7 +20,9 @@ Future<List<dynamic>> getEvents() async {
   var response = await query.get();
   body = response.docs;
   for (var obj in body) {
-    ret.add(obj.data());
+    Map<String, dynamic> push = obj.data();
+    push['id'] = obj.id;
+    ret.add(push);
   }
   return ret;
 }

@@ -47,7 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
@@ -72,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
               }
             });
           },
-          child: Text("Sign in with Google"),
+          child: const Text("Sign in with Google"),
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
