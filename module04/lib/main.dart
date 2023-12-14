@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:module04/routes/event/event_page.dart';
 import 'firebase_options.dart';
-Future<void> main() async {
 
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -12,14 +12,13 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Connect to your diary',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -31,6 +30,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
+
   final String title;
 
   @override
@@ -38,40 +38,31 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   Future<UserCredential> signInWithGoogle() async {
-    return await FirebaseAuth.instance.signInWithProvider(GoogleAuthProvider());
+    var googleProvider = GoogleAuthProvider();
+    googleProvider.setCustomParameters({'prompt': 'select_account'});
+    return await FirebaseAuth.instance.signInWithProvider(googleProvider);
   }
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        leading: null,
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
       body: Center(
         child: ElevatedButton(
           onPressed: () async {
-            FirebaseAuth.instance
-                .authStateChanges()
-                .listen((User? user) async {
-              if (user == null) {
-                await signInWithGoogle();
-              }
-            });
-            FirebaseAuth.instance
-                .authStateChanges()
-                .listen((User? user) {
-              if (!(user == null)) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) =>  EventPage()),
-                );
-              }
-            });
+            await signInWithGoogle();
+            if (FirebaseAuth.instance.currentUser != null) {
+              Future.microtask(() => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const EventPage()),
+              ));
+            }
           },
           child: const Text("Sign in with Google"),
         ),

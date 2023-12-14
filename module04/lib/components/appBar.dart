@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 
@@ -20,10 +21,14 @@ class _AppBarComponentState extends State<AppBarComponent> {
       height: 200,
       width: MediaQuery.of(context).size.width,
       // padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-      child: const Row(
+      child:  Row(
         children: <Widget>[
-          Expanded(child: Text("Diary")
+          const Expanded(child: Text("Diary")
           ),
+          IconButton(onPressed: ()  async {
+            await FirebaseAuth.instance.signOut();
+            Future.microtask(() => Navigator.pushNamed(context, "/"));
+          }, icon: const Icon(Icons.logout, size: 40,)),
         ],
       ),
     );
